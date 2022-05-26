@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const {v4:uuidV4} = require('uuid')
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json())
 
 const users = [];
@@ -108,6 +110,4 @@ app.delete("/todos/:id", checkIfExisitsUserAccount, (request, response)=>{
     return response.status(200).json(user.todos)
 })
 
-app.listen(3333, ()=>{
-    console.log(`Server is running`)
-})
+module.exports = app;
